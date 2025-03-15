@@ -118,6 +118,9 @@ export default {
 
   mounted() {
     this.getAllVacancy();
+    this.$nextTick(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
   },
 
   computed: {
@@ -141,7 +144,9 @@ export default {
         console.error('Error loading vacancies:', error);
       }
     }
-  }
+  },
+ 
+
 };
 </script>
 

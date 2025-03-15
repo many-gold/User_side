@@ -29,17 +29,24 @@
                             <p class="mt-4 mb-4" style="text-align: justify">
                                 {{post.details}}
                             </p>
+                            
+                           
                         </div>
                         <div class="col-md-3 mt-5" v-if="post.filelocation">
                                 <a @click="downloadPolicy(post.filelocation)" class="custom_dark-btn links-btn">
                                 View Attached Document
                                 </a>
                         </div>
+                        <img :src="getImage(post.filelocation)" :alt="post.caption" />
+              
                     </div>
                     <div class="row">
                             <div class="col-md-12" v-if="post.note">
                             <font-awesome-icon icon="fa-solid fa-circle-info" style="font-size: 25px; margin-right: 15px;" /> <span style="color: rgba(240, 206, 13, 0.937)">{{post.note}}</span>
                             </div>
+                    </div>
+                    <div>
+                      
                     </div>
             </div>
           </template>
@@ -84,7 +91,15 @@ export default {
         },
         downloadPolicy(filelocation){
               window.open(`${axios.defaults.baseURL}/static/Organogram/${filelocation}`, '_blank');
-        }
+        },
+        getImage(filelocation){
+      return `${axios.defaults.baseURL}/static/organogram/${filelocation}`;
+    },
+    
+
+    // viewPhoto(index) {
+    //   this.selectedPhoto = index;
+    // },
   },
   computed:{
         filterTable(){
@@ -104,7 +119,9 @@ export default {
     },
   mounted(){
     this.getAllPosts()
-  }
+  },
+
+ 
 }
 </script>
 
@@ -122,4 +139,13 @@ export default {
   .fruit_section{
     margin-top: 5%;
   }
+  .preview-img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 </style>

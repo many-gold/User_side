@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <router-view/>
-    <Denomination/>
+    <!-- <Denomination/> -->
   </div>
 </template>
 
 <script>
-import Denomination from './components/core/Denomination.vue'
+// import Denomination from './components/core/Denomination.vue'
 
 export default {
   name: 'App',
-  components:{
-    Denomination
-  }
+  // components:{
+  //   Denomination
+  // }
 }
 </script>
 

@@ -24,10 +24,11 @@
     <nav class="navbar">
     <ul class="nav-list">
   <li class="nav-item dropdown">
-    <button class="dropdown-toggle">About US</button>
+    <button class="dropdown-toggle">About Us</button>
     <ul class="dropdown-menu">
-      <li><a href="https://tsehaybank.com.et/company-profile/"  target="_blank">Company Profile</a></li>
-      <li><a href="https://tsehaybank.com.et/organizational-structure/" target="_blank">Organizational Structure</a></li>
+      <li><router-link to="/InformationPortal/organogram">Organogram</router-link></li>
+      <!-- <li><a href="https://tsehaybank.com.et/company-profile/"  target="_blank">Company Profile</a></li>
+      <li><a href="https://tsehaybank.com.et/organizational-structure/" target="_blank">Organizational Structure</a></li> -->
       
       </ul>
   </li>
@@ -88,16 +89,16 @@
                     </li>
                   </ul>
                 </div> -->
-                <div class="d-flex flex-column flex-lg-row align-items-right mr-3">
+                <!-- <div class="d-flex flex-column flex-lg-row align-items-right mr-3">
                   <ul class="navbar-nav  ">
                     <li class="nav-item active">
                       <div class="row">
-                        <!-- <li><a href="https://tsehaybank.com.et/vacancy/" target="_blank" class="nav-link">Vacancy</a></li> -->
-                        <router-link class="nav-link" to="/InformationPortal/InternalVacancy">Vacancy</router-link>
+                       
+                        <router-link class="nav-link" to="/InformationPortal/InternalVacancy">Signature</router-link>
                       </div>
                     </li>
                   </ul>
-                </div>
+                </div> -->
                  <!-- <div class="d-flex flex-column flex-lg-row align-items-right mr-3">
                   <ul class="navbar-nav  ">
                     <li class="nav-item active">
@@ -113,9 +114,9 @@
       <li class="nav-item dropdown">
         <button class="dropdown-toggle">Media</button>
         <ul class="dropdown-menu">
-          <li><a href="https://tsehaybank.com.et/latest-news/" title="Tsehay Bank  Latest News" class="nav-list" target="_blank">
+          <!-- <li><a href="https://tsehaybank.com.et/latest-news/" title="Tsehay Bank  Latest News" class="nav-list" target="_blank">
             Latest News
-                  </a></li>
+                  </a></li> -->
           <li><router-link to="/InformationPortal/PhotoGallery" class="nav-list">Photo Gallery</router-link></li>
           <li><router-link to="/InformationPortal/VideoGallery" class="nav-list">Video Gallery</router-link></li>
           
@@ -134,13 +135,22 @@
           <li><router-link to="/InformationPortal/humanResource">Human Resource</router-link></li>
           <!-- <li><router-link to="/InformationPortal/organogram">Organogram</router-link></li> -->
           <li><router-link to="/InformationPortal/SecuritySection">Cybersecurity Tips</router-link></li>
-          <li><router-link to="/InformationPortal/DiscussionForm">Discussion Forums </router-link></li>
+          <li><router-link to="/InformationPortal/Post">Discussion Forums </router-link></li>
           
         </ul>
       </li>
     </ul>
   </nav>
   </div>
+  <div class="d-flex flex-column flex-lg-row align-items-right mr-3">
+                  <ul class="navbar-nav  ">
+                    <li class="nav-item active">
+                      <div class="row">
+                        <router-link class="nav-link" to="/InformationPortal/InternalVacancy">Vacancy</router-link><div v-if="numOfHRPosts > 0" class="nav-badge">{{numOfHRPosts}}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
                 <div class="quote_btn-container d-flex justify-content-right">
                   <a href="http://localhost:1027/InformationPortal/login" target="_blank">
                     Login
@@ -204,7 +214,7 @@ export default {
   }
   .nav-link{
     font-family: 'astoria' !important;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     z-index: 999999;
     }
@@ -261,7 +271,7 @@ export default {
   font-family: 'astoria' !important;
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 15px;
   color: #255b30;
   font-weight: 600;
   

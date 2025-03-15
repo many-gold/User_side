@@ -13,7 +13,8 @@
               <div class="col-md-8">
                 <div class="fruit_detail-box">
                   <h3>
-                    {{securityContent.headline}}
+                    <!-- {{securityContent.headline}} -->
+                    <div v-html="securityContent.headline"></div>
                   </h3>
                   <div class="row">
                     <div class="col-md-2" style="color: #f0ce0def; text-align:center">
@@ -23,11 +24,13 @@
                     </div>
                     <div class="col-md-10">
                       <p class="mt-2 mb-2 sub-heading">
-                        {{securityContent.subheading}}
+                        <div v-html="securityContent.subheading"></div>
+                        <!-- {{securityContent.subheading}} -->
                       </p>
                       <p style="text-align: justify">
-                        {{securityContent.details.substring(0,310)}} 
-                      </p>
+                        {{ securityContent.details ? securityContent.details.substring(0,310) : '' }}
+                       </p>
+
                     </div>
                   </div>
                   <div style="display: flex; justify-content: end;">
@@ -212,4 +215,7 @@ TopNavBar,Footer
      	color: rgb(37, 91, 48);
     	transition: .2s;
     }
+    .fruit_section {
+    margin-top: 5% !important;
+  }
 </style>

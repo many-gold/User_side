@@ -84,9 +84,43 @@ export default {
                 console.log(error);
             });
         },
-        downloadPolicy(filelocation){
-              window.open(`${axios.defaults.baseURL}/static/policy/${filelocation}`, '_blank');
-        }
+        // downloadPolicy(filelocation){
+        //       window.open(`${axios.defaults.baseURL}/static/policy/${filelocation}`, '_blank');
+        // }
+        downloadPolicy(filelocation) {
+    // Use the proxy URL, and ensure it's being properly fetched
+    const proxyUrl = `${axios.defaults.baseURL}/static/policy/${filelocation}`;
+
+    fetch(proxyUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const fileType = blob.type;
+
+            // If the file is a PDF or an image, open it in the browser
+            if (fileType.includes("pdf") || fileType.includes("image")) {
+                const url = window.URL.createObjectURL(blob);
+                window.open(url, "_blank");
+            } else {
+                // If it's another file type, trigger a download
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.style.display = "none";
+                a.href = url;
+                a.download = filelocation;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }
+        })
+        .catch(error => console.error("Error downloading file:", error));
+}
+
+
   },
   mounted(){
     this.getAllPolicies()

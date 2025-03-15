@@ -2,11 +2,11 @@
     <div>
         <!-- Header section -->
         <TopNavBar />
-
+  
         <section class="fruit_section">
             <div class="container">
-                <h2 class="importantlink_heading mt-3 text-center"><span>Important Links</span></h2>
-
+                <h2 class="importantlink_heading mt-3 text-center"><span>Departments Phone Number</span></h2>
+  
                 <b-row>
                     <b-card style="width: 100%">
                         <b-row>
@@ -22,7 +22,7 @@
                                 </b-form-group>
                             </b-col>
                         </b-row>
-
+  
                         <b-col>
                             <div>
                                 <!-- Fixed Table Code -->
@@ -32,19 +32,17 @@
                                     <template #cell(index)="data">
                                         {{ data.index + 1 }}
                                     </template>
-
+  
                                     <!-- Description Column -->
-                                    <template #cell(description)="data">
-                                        {{ data.item.description || "No description" }}
+                                    <template #cell(DepartmentName)="data">
+                                        {{ data.item.DepartmentName || "No Department Name" }}
                                     </template>
-
-                                    <!-- Link Column -->
-                                    <template #cell(link)="data">
-                                        <a :href="data.item.link || '#'" target="_blank" >
-                                            {{ data.item.link ? "Visit" : "No Link" }}
-                                        </a>
+  
+                                    <template #cell(Phone)="data">
+                                        {{ data.item.Phone || "No Phone" }}
                                     </template>
-
+                                    
+  
                                     <!-- Empty State -->
                                     <template #empty>
                                         <b-tr>
@@ -58,40 +56,40 @@
                 </b-row>
             </div>
         </section>
-
+  
         <Footer />
     </div>
-</template>
-
-<script>
-import TopNavBar from './core/Navbar.vue';
-import Footer from './core/Bottombar.vue';
-
-export default {
+  </template>
+  
+  <script>
+  import TopNavBar from './core/Navbar.vue';
+  import Footer from './core/Bottombar.vue';
+  
+  export default {
     components: {
         TopNavBar,
         Footer
     },
-
+  
     data() {
         return {
             items: [],
             filter: '',
             tableFields: [
                 { key: "index", label: "No." },
-                { key: "description", label: "Description" },
-                { key: "link", label: "Link" }
+                { key: "DepartmentName", label: "Department Name" },
+                { key: "Phone", label: "Phone" }
             ]
         };
     },
-
+  
     mounted() {
-        this.getAllImportantLinks();
+        this.getAlldepartmentphone();
         this.$nextTick(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   });
     },
-
+  
     computed: {
         filterTable() {
             if (!this.filter) return this.items;
@@ -100,32 +98,33 @@ export default {
             );
         }
     },
-
+  
     methods: {
-        async getAllImportantLinks() {
+        async getAlldepartmentphone() {
             try {
-                const response = await this.$store.dispatch('getAllImportantLinksfront');
+                const response = await this.$store.dispatch('getAlldepartmentphone');
                 this.items = response.data.recordset || [];
-
+  
             } catch (error) {
                 console.error('Error loading links:', error);
             }
         }
     }
-};
-</script>
-
-<style>
-.fruit_section {
+  };
+  </script>
+  
+  <style>
+  .fruit_section {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     margin-top: 5%;
-}
-
-.no-data {
+  }
+  
+  .no-data {
     text-align: center;
     font-weight: bold;
     color: red;
-}
-</style>
+  }
+  </style>
+  

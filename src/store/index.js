@@ -24,6 +24,9 @@ export default new Vuex.Store({
         },
         SET_MESSAGES(state, messages) {
           state.messages = messages;
+        },
+        SET_POSTS(state, posts) {
+          state.posts = posts;
         }
     },
     actions: {
@@ -646,8 +649,23 @@ export default new Vuex.Store({
         })
       })
     },
+    //getAlldepartmentphone link
+    getAlldepartmentphone(context){
+        
+      return new Promise((resolve, reject)=>{
+      axios.get('/Departmentphone/getAlldepartmentphone')
+        .then(response => {
+          resolve(response);
+          console.log('Response Data:', response.data);
+        })
+        .catch(error => {
+          console.log(error);
+          reject(error);
+        })
+      })
+    },
 
-        //PhoneDirectory link
+        //getAllVacancy link
         getAllVacancy(context){
         
           return new Promise((resolve, reject)=>{
@@ -662,7 +680,51 @@ export default new Vuex.Store({
             })
           })
         },
+//discussion forum
+fetchPosts({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.get('/forum/posts')
+      .then(response => {
+        commit("SET_POSTS", response.data);
+        resolve(response);
+      })
+      .catch(error => {
+        console.error("Error fetching posts:", error);
+        reject(error);
+      });
+  });
+},
 
+async fetchPostDetails({ commit }, postId) {
+  try {
+    const response = await axios.get(`/forum/posts/${postId}`);
+    commit("SET_POST", response.data);
+  } catch (error) {
+    console.error("Error fetching post details:", error);
+  }
+},
+
+async createReply({ commit }, { postId, content }) {
+  console.log("Sending reply to backend..."); // Debugging step 4
+  try {
+    const response = await axios.post(`/forum/replies/${postId}`, { content }, {
+      headers: { "Content-Type": "application/json" }
+    });
+
+    console.log("Reply created:", response.data); // Debugging step 5
+
+    // Commit to Vuex store
+    commit("ADD_REPLY", response.data);
+  } catch (error) {
+    console.error("Error creating reply:", error.response ? error.response.data : error.message);
+  }
+}
+
+
+    },
+    getters: {
+      getPost: (state) => state.currentPost,
+      getReplies: (state) => state.replies
     }
 });
 

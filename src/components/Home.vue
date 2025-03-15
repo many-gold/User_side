@@ -361,6 +361,7 @@ input, button {
   margin-top: 8px;
 }
 .fdbkpos {
+  display: flex;
   position: fixed;
   bottom: 10px;
   left: 10px;

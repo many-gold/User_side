@@ -18,6 +18,10 @@ import DiscussionForm from '@/components/DiscussionForm'
 import ImportantLinks from '@/components/ImportantLinks'
 import InternalVacancy from '@/components/InternalVacancy.vue'
 import PhoneDirectory from '@/components/PhoneDirctory.vue'
+import DepartmentsPhone from '@/components/DepartmentsPhone.vue'
+import Post from '@/components/Post.vue';
+import PostDetails from '@/components/PostDetails.vue';
+
 
 Vue.use(Router)
 
@@ -103,11 +107,7 @@ export default new Router({
       name: 'ImportantLinks',
       component: ImportantLinks
     },
-    {
-      path:'/InformationPortal/DiscussionForm',
-      name: 'DiscussionForm',
-      component: DiscussionForm
-    },
+  
     {
       path:'/InformationPortal/InternalVacancy',
       name: 'InternalVacancy',
@@ -118,5 +118,17 @@ export default new Router({
       name: 'PhoneDirectory',
       component: PhoneDirectory
     },
+    {
+      path:'/InformationPortal/DepartmentsPhone',
+      name: 'DepartmentsPhone',
+      component: DepartmentsPhone
+    },
+    { path: '/InformationPortal/Post', name: 'Post', component: Post },
+    { 
+      path: "/InformationPortal/post/:postId",
+      name: "PostDetails",
+      component: PostDetails,
+      props: true
+    }
   ]
 })

@@ -1,6 +1,8 @@
 <template>
+  
   <footer class="footer col-md-12">
     <div class="footer-container ">
+      <Denomination/>
       <!-- Contact Us Section -->
       <div class="footer-section">
         <h3>Contact Us</h3>
@@ -21,10 +23,11 @@
         <ul>
           <li><router-link to="/InformationPortal/importantLinks">Important Links</router-link></li>
           <li><router-link to="/InformationPortal/PhoneDirectory">Departments Phone No</router-link></li>
+          <li><router-link to="/InformationPortal/DepartmentsPhone">Employee Phone No</router-link></li>
           <li><router-link to="/InformationPortal/InternalVacancy">Vacancy</router-link></li>
-          <li><a href="https://tsehaybank.com.et/branches/" target="_blank">Branch and ATM</a></li>
-          <li><a href="https://tsehaybank.com.et/exchange-rate/" target="_blank">Daily Exchange Rate</a></li>
-          <li><a href="https://tsehaybank.com.et/loan-calculator/" target="_blank">Loan Calculator</a></li>
+          <!-- <li><a href="https://tsehaybank.com.et/branches/" target="_blank">Branch and ATM</a></li>
+          <li><a href="https://tsehaybank.com.et/exchange-rate/" target="_blank">Daily Exchange Rate</a></li> -->
+          <!-- <li><a href="https://tsehaybank.com.et/loan-calculator/" target="_blank">Loan Calculator</a></li> -->
           <li>SWIFT Code: <strong>TSCPETAA</strong></li>
         </ul>
       </div>
@@ -34,28 +37,29 @@
         <h3>Follow Us</h3>
         <ul>
           <li>
-            <a href="https://t.me/tsehaybanksc" target="_blank"><font-awesome-icon :icon="['fab', 'telegram']" /> Telegram</a>
+            <a><font-awesome-icon :icon="['fab', 'telegram']" /> t.me/tsehaybanksc</a>
           </li>
           <li>
-            <a href="https://web.facebook.com/tsehaybanksc" target="_blank"><font-awesome-icon :icon="['fab', 'facebook']" /> Facebook</a>
+            
+            <a><font-awesome-icon :icon="['fab', 'facebook']" /> web.facebook.com/tsehaybanksc</a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/company/tsehaybank/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']" /> LinkedIn</a>
+            <a><font-awesome-icon :icon="['fab', 'linkedin']" /> www.linkedin.com/company/tsehaybank</a>
           </li>
           <li>
-            <a href="https://www.instagram.com/tsehay_bank/" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']" /> Instagram</a>
+            <a ><font-awesome-icon :icon="['fab', 'instagram']" /> www.instagram.com/tsehay_bank</a>
           </li>
           <li>
-            <a href="https://x.com/tsehaybank" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /> Twitter</a>
+            <a><font-awesome-icon :icon="['fab', 'twitter']" /> https://x.com/tsehaybank</a>
           </li>
           <li>
-            <a href="https://www.youtube.com/channel/UCqj_qre7CVg_8vBtn2zTNQA" target="_blank"><font-awesome-icon :icon="['fab', 'youtube']" /> YouTube</a>
+            <a><font-awesome-icon :icon="['fab', 'youtube']" /> youtube.com/channel/UCqj_qre7CVg_8vBtn2zTNQA</a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/@tsehaybank" target="_blank"><font-awesome-icon :icon="['fab', 'tiktok']" /> TikTok</a>
+            <a><font-awesome-icon :icon="['fab', 'tiktok']" /> www.tiktok.com/@tsehaybank</a>
           </li>
           <li>
-            <a href="https://www.pinterest.com/tsehaybank/" target="_blank"><font-awesome-icon :icon="['fab', 'pinterest']" /> Pinterest</a>
+            <a><font-awesome-icon :icon="['fab', 'pinterest']" /> www.pinterest.com/tsehaybank</a>
           </li>
         </ul>
       </div>
@@ -69,9 +73,15 @@
 
 <script>
 import '@fortawesome/fontawesome-free/css/all.css';
+import Denomination from './Denomination.vue'
 
 export default {
   name: "Footer",
+  components:{
+    Denomination
+  },
+ 
+
 };
 </script>
 

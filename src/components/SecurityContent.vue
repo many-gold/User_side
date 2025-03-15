@@ -2,13 +2,15 @@
   <div>
     <!-- header section strats -->
     <TopNavBar/>
-      <section class="fruit_section">
+      <section class="fruit_section min-vh-100">
         <div class="container">
-          <h2 class="custom_heading mt-3">Security Content</h2>
+          <h2 class="custom_heading">Security Content</h2>
           <p class="custom_heading-text">
-            {{securityContentData.headline}}
+            <!-- {{securityContentData.headline}} -->
+            <div v-html="securityContentData.headline"></div>
           </p>
           <template>
+           
             <div class="row layout_padding2">
               <div class="col-md-6">
                 <div class="fruit_detail-box">
@@ -20,6 +22,8 @@
                     </div>
                     <div class="col-md-10">
                       <p class="sub-heading mt-4 mb-4"> 
+                       
+
                         {{securityContentData.subheading}}
                       </p>
                       <p class="mt-4 mb-4" style="text-align: justify">
@@ -62,17 +66,24 @@
 </template>
 
 <script>
+import { VueEditor } from "vue2-editor";
 import TopNavBar from './core/Navbar.vue'
 import Footer from './core/Bottombar.vue'
 import axios from 'axios'
 export default {
    components: { 
       TopNavBar,
-      Footer
+      Footer,
+      VueEditor,
     },
   name: 'SecurityContent',
   data() {
     return {
+      customToolbar: [
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link"],
+      ],
       image: "@/assets/background.png",
       securityContentData:{}
     };
@@ -117,7 +128,13 @@ console.log("DATASeyfErr",response.data)
       },
       viewImage(imagelocation){
         window.open(`${axios.defaults.baseURL}/static/securityContents/${imagelocation}`, '_blank');
-      }
+      },
+    computed: {
+  formattedSubheading() {
+    return this.securityContentData.subheading || "";
+  }
+}
+
   }
 }
 </script>
@@ -137,7 +154,7 @@ console.log("DATASeyfErr",response.data)
       font-size: 20px;
       color: rgba(240, 206, 13, 0.937);
     }
-    .fruit_section{
-    margin-top: 5%;
+    .fruit_section {
+    margin-top: 5% !important;
   }
 </style>

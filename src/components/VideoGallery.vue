@@ -31,7 +31,7 @@
             >
               <!-- Use the correct <video> tag -->
               <video :src="getVideo(video.filelocation)" controls width="100%" height="auto"  controlsList="nodownload" 
-    @contextmenu.prevent ></video>
+    @contextmenu.prevent id="myVideo" ondblclick="return false;"></video>
               <p class="caption">{{ video.caption }}</p>
             </div>
           </div>
@@ -120,6 +120,26 @@ export default {
     },
   },
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  function removeDownloadButtons() {
+    document.querySelectorAll("video").forEach((video) => {
+      video.setAttribute("controlsList", "nodownload"); // Prevent download
+    });
+
+    document.querySelectorAll("video::-webkit-media-controls-download-button").forEach((btn) => {
+      btn.style.display = "none"; // Hide download button
+    });
+  }
+
+  // Run on page load
+  removeDownloadButtons();
+
+  // Monitor for dynamically added videos
+  const observer = new MutationObserver(removeDownloadButtons);
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+
 </script>
 
 <style scoped>
@@ -272,5 +292,6 @@ export default {
 .fruit_section{
     margin-top: 5%;
   }
+  
 </style>
 
